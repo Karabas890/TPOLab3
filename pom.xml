@@ -25,8 +25,9 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.8.0</version>
+            <version>5.8.0</version> <!-- или выше -->
         </dependency>
+
 
         <!-- JUnit 5 для написания тестов -->
         <dependency>
@@ -35,6 +36,12 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

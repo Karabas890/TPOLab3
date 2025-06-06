@@ -12,16 +12,27 @@ import java.time.Duration;
 
 public class Utils {
 
-    public WebDriver driver;
-    public JavascriptExecutor js;
-    public WebDriverWait wait;
+    private WebDriver driver;
+    private JavascriptExecutor js;
+    private WebDriverWait wait;
+    private final String browser = "firefox"; // "chrome" or "firefox"
 
     public void setupDriver() {
-        WebDriverManager.chromedriver().driverVersion("135.0.7049.114").setup();
-        driver = new ChromeDriver();
+        switch (browser.toLowerCase()) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case "chrome":
+            default:
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+        }
+
         wait = new WebDriverWait(driver, Duration.ofSeconds(25));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 
         driver.manage().window().setSize(new Dimension(1050, 716));
         js = (JavascriptExecutor) driver;
